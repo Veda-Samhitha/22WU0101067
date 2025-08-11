@@ -1,0 +1,101 @@
+{
+  "info": {
+    "name": "URL Shortener Microservice",
+    "_postman_id": "d1de4a2c-0000-4000-8000-aaaaaaaaaaaa",
+    "description": "Local testing collection for the FastAPI URL shortener",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Create Short URL",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://example.com/very/long/link\",\n  \"validity\": 5\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/shorturls",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "shorturls"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Redirect (no follow)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept-Language",
+            "value": "en-US"
+          }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/{{shortcode}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "{{shortcode}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stats",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/shorturls/{{shortcode}}",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "shorturls",
+            "{{shortcode}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8000/healthz",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "healthz"
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "shortcode",
+      "value": "X9a"
+    }
+  ]
+}
